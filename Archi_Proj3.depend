@@ -1,0 +1,101 @@
+# depslib dependency file v1.0
+1495650717 source:d:\users\user\desktop\nthu\105_2nd_semester\archi\project 3\archi_proj3\alu.cpp
+	<iostream>
+	<iomanip>
+	<fstream>
+	<string>
+	<stdlib.h>
+	<cstdlib>
+	"var.h"
+	"error_detect.h"
+
+1495607029 d:\users\user\desktop\nthu\105_2nd_semester\archi\project 3\archi_proj3\var.h
+	<iostream>
+	<fstream>
+	<string>
+	<cstdlib>
+
+1490415428 d:\users\user\desktop\nthu\105_2nd_semester\archi\project 3\archi_proj3\error_detect.h
+	<iostream>
+	<iomanip>
+	<fstream>
+	<string>
+	<stdlib.h>
+	<cstdlib>
+	"var.h"
+
+1490415428 source:d:\users\user\desktop\nthu\105_2nd_semester\archi\project 3\archi_proj3\decode.cpp
+	<iostream>
+	<iomanip>
+	<fstream>
+	<string>
+	<stdlib.h>
+	<cstdlib>
+	"var.h"
+
+1495424451 source:d:\users\user\desktop\nthu\105_2nd_semester\archi\project 3\archi_proj3\error_detect.cpp
+	<iostream>
+	<iomanip>
+	<fstream>
+	<string>
+	<stdlib.h>
+	<cstdlib>
+	"var.h"
+
+1495640395 source:d:\users\user\desktop\nthu\105_2nd_semester\archi\project 3\archi_proj3\main.cpp
+	<iostream>
+	<iomanip>
+	<fstream>
+	<string>
+	<stdlib.h>
+	<cstdlib>
+	"var.h"
+	"decode.h"
+	"register.h"
+	"alu.h"
+	"error_detect.h"
+
+1490415428 d:\users\user\desktop\nthu\105_2nd_semester\archi\project 3\archi_proj3\decode.h
+	<iostream>
+	<iomanip>
+	<fstream>
+	<string>
+	<stdlib.h>
+	<cstdlib>
+	"var.h"
+
+1490415428 d:\users\user\desktop\nthu\105_2nd_semester\archi\project 3\archi_proj3\register.h
+	<iostream>
+	<iomanip>
+	<fstream>
+	<string>
+	<stdlib.h>
+	<cstdlib>
+	"var.h"
+
+1495617408 d:\users\user\desktop\nthu\105_2nd_semester\archi\project 3\archi_proj3\alu.h
+	<iostream>
+	<iomanip>
+	<fstream>
+	<string>
+	<stdlib.h>
+	<cstdlib>
+	"var.h"
+	"error_detect.h"
+
+1490415428 source:d:\users\user\desktop\nthu\105_2nd_semester\archi\project 3\archi_proj3\register.cpp
+	<iostream>
+	<iomanip>
+	<fstream>
+	<string>
+	<stdlib.h>
+	<cstdlib>
+	"var.h"
+
+1495607305 source:d:\users\user\desktop\nthu\105_2nd_semester\archi\project 3\archi_proj3\var.cpp
+	<iostream>
+	<fstream>
+	<string>
+	<cstdlib>
+	"var.h"
+
