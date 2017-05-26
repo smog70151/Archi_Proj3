@@ -46,32 +46,50 @@ int main(int argc, char **argv)
     init();
     //Init condition
 
-    if( argc == 11 )
-    {
-        IMemory_size = atoi(argv[1]);
-        DMemory_size = atoi(argv[2]);
-        IPage_size = atoi(argv[3]);
-        DPage_size = atoi(argv[4]);
-        ICache_size = atoi(argv[5]);
-        IBlock_size = atoi(argv[6]);
-        Iasscoiate = atoi(argv[7]);
-        DCache_size = atoi(argv[8]);
-        DBlock_size = atoi(argv[9]);
-        Dasscoiate = atoi(argv[10]);
-    }
-    else
-    {
-        IMemory_size = 64;
-        DMemory_size = 32;
-        IPage_size = 8;
-        DPage_size = 16;
-        ICache_size = 16;
-        IBlock_size = 4;
-        Iasscoiate = 4;
-        DCache_size = 16;
-        DBlock_size = 4;
-        Dasscoiate = 1;
-    }
+    // Config : Default
+    IMemory_size = 64;
+    DMemory_size = 32;
+    IPage_size = 8;
+    DPage_size = 16;
+    ICache_size = 16;
+    IBlock_size = 4;
+    Iasscoiate = 4;
+    DCache_size = 16;
+    DBlock_size = 4;
+    Dasscoiate = 1;
+    // Config : 2
+    // IMemory_size = 32;
+    // DMemory_size = 256;
+    // IPage_size = 32;
+    // DPage_size = 64;
+    // ICache_size = 32;
+    // IBlock_size = 32;
+    // Iasscoiate = 1;
+    // DCache_size = 32;
+    // DBlock_size = 4;
+    // Dasscoiate = 4;
+    // Config : 3 //512 512 64 32 32 4 4 32 4 2
+    // IMemory_size = 512;
+    // DMemory_size = 512;
+    // IPage_size = 64;
+    // DPage_size = 32;
+    // ICache_size = 32;
+    // IBlock_size = 4;
+    // Iasscoiate = 4;
+    // DCache_size = 32;
+    // DBlock_size = 4;
+    // Dasscoiate = 2;
+
+    if(argc >= 2) IMemory_size = atoi(argv[1]);
+    if(argc >= 3) DMemory_size = atoi(argv[2]);
+    if(argc >= 4) IPage_size = atoi(argv[3]);
+    if(argc >= 5) DPage_size = atoi(argv[4]);
+    if(argc >= 6) ICache_size = atoi(argv[5]);
+    if(argc >= 7) IBlock_size = atoi(argv[6]);
+    if(argc >= 8) Iasscoiate = atoi(argv[7]);
+    if(argc >= 9) DCache_size = atoi(argv[8]);
+    if(argc >= 10) DBlock_size = atoi(argv[9]);
+    if(argc >= 11) Dasscoiate = atoi(argv[10]);
     //Init memory
     initiMemory();
     initdMemory();
@@ -293,24 +311,26 @@ unsigned int offset(unsigned int value)
 
 void initiMemory()
 {
+    // cout << "Initial condition : " << endl;
     // Disk
     IDisk_size = 1024;
 
     // PTE
     IPTE_entries = IDisk_size / IPage_size;
+    // cout << "IPTE_entries : " << dec << IPTE_entries << endl;
 
     // TLB
     ITLB_entries = IPTE_entries / 4;
-    ITLB_index = offset((unsigned int)IPTE_entries);
+    ITLB_index = offset((unsigned int)ITLB_entries); // Bit
 
     // Page offset
     IPage_offset = offset((unsigned int)IPage_size);
 
     // Cache Offset
-    IByte_offset = 2;
+    IByte_offset = 0;
+    IBlock_offset = offset((unsigned int)IBlock_size);
     ICache_row = ICache_index = ICache_size/IBlock_size/Iasscoiate;
-    IBlock_offset = offset((unsigned int)ICache_index);
-    ICache_offset = IBlock_offset;
+    ICache_offset = IBlock_offset + IByte_offset; // Due to byte addr, so byte offset = 0
     // cout << "ICache_offset : " << dec << setw(2) << ICache_offset << endl;
 
     // Memory
@@ -373,16 +393,17 @@ void initdMemory()
     // DTLB_entries : 16
 
     DTLB_entries = DPTE_entries / 4;
-    DTLB_index = offset((unsigned int)DPTE_entries);
+    DTLB_index = offset((unsigned int)DTLB_entries);
 
     // Page offset
     DPage_offset = offset((unsigned int)DPage_size);
 
     // Cache Offset
-    DByte_offset = 2;
+    // Byte Address
+    DByte_offset = 0;
     DCache_row = DCache_index = DCache_size/DBlock_size/Dasscoiate;
-    DBlock_offset = offset((unsigned int)DCache_index);
-    DCache_offset = DBlock_offset;
+    DBlock_offset = offset((unsigned int)DBlock_size);
+    DCache_offset = DBlock_offset + DByte_offset;
 
     // Memory
     DMemory_entries = DMemory_size/DPage_size;
@@ -445,11 +466,11 @@ void memoryCheck(unsigned int VA)
         PA = (PPN<<IPage_offset) + (VA%IPage_size);
         iCache(PA);
     }
-    else
+    else // Miss Condition
     {
         ITLB_miss++;
         PPN = iPTE(VPN);
-        // cout << "PTE : "<< dec << PPN << endl;
+        // cout << "PTE : "<< dec << PPN << endl << endl;
         iTLB_Miss(VPN, PPN);
         PA = (PPN<<IPage_offset) + (VA%IPage_size);
         iCache(PA);
@@ -459,19 +480,19 @@ void memoryCheck(unsigned int VA)
 unsigned int iTLB_Hit(unsigned int VPN)
 {
     unsigned int tag;
-    tag = VPN;
+    tag = VPN; // Due to Fully associate
     // Hit condition
     for(int i = 0; i < ITLB_entries; i++)
     {
         if( ITLB[i].tag == tag && ITLB[i].valid == true )
         {
             ITLB[i].LRU = cyc;
+            // cout << "Hit Cycle(ITLB) : " << setw(2) << dec << cyc << endl;
             return ITLB[i].PPN;
         }
     }
 
     // Miss condition
-
     return -1;
 }
 
@@ -512,12 +533,15 @@ void iTLB_Miss(unsigned int VPN, unsigned int PPN)
 unsigned int iPTE(unsigned int VPN)
 {
     // Hit condition
+    bool isPageFault = false;
+
     for(int i = 0; i < IPTE_entries; i++)
     {
         if( IPTE[i].VPN == VPN && IPTE[i].valid == true )
         {
             IPTE_hit++;
             IPTE[i].LRU = cyc;
+            IMemory[IPTE[i].PPN].LRU = cyc;
             return IPTE[i].PPN;
         }
     }
@@ -527,6 +551,8 @@ unsigned int iPTE(unsigned int VPN)
     unsigned int min = IMemory[0].LRU;
     unsigned int index = 0; // PPN = index
     bool isValid = false;
+
+    // Check Memory
     for(int i = 0; i < IMemory_entries; i++)
     {
         if( IMemory[i].valid == false)
@@ -552,21 +578,52 @@ unsigned int iPTE(unsigned int VPN)
                 index = i;
             }
         }
+        isPageFault = true;
+        IMemory[index].valid = true;
+        IMemory[index].LRU = cyc;
     }
 
 
+    // Check Page Fault Condition and handle PageFault
+    // Set Condition
     unsigned int PPN = index;
-    isValid = false;
+    if(isPageFault)
+    {
+        // Turn into invalid(PTE)
+        for(int i = 0; i < IPTE_entries; i++)
+            if( IPTE[i].PPN == PPN && IPTE[i].valid==true )
+                IPTE[i].valid = false;
 
+        // Turn into invalid(TLB)
+        for(int i = 0; i < ITLB_entries; i++)
+            if( ITLB[i].PPN == PPN && ITLB[i].valid==true )
+                ITLB[i].valid = false;
+
+        // Turn into invalid(Cache)
+        for(int i = 0; i < IPage_size; i++)
+        {
+            unsigned int PA;
+            unsigned int cacheTag, cacheIndex;
+            PA = (PPN<<IPage_offset) + i;
+            cacheIndex = (PA>>ICache_offset)%ICache_index;
+            cacheTag   = (PA>>ICache_offset)/ICache_index;
+            for(int j = 0; j < Iasscoiate; j++)
+                if( ICache[cacheIndex].set[j].tag == cacheTag )
+                    ICache[cacheIndex].set[j].valid = false;
+        }
+    }
+
+    // ALter PTE
     // Valid Bit --- false
-    unsigned int errVPN, errPPN;
+    isValid = false;
+    // unsigned int errVPN, errPPN;
     for(int i = 0 ; i < IPTE_entries; i++)
     {
         // Find and Break the loop
         if( IPTE[i].valid == false )
         {
-            errVPN = IPTE[i].VPN;
-            errPPN = IPTE[i].PPN;
+            // errVPN = IPTE[i].VPN;
+            // errPPN = IPTE[i].PPN;
             IPTE[i].VPN = VPN;
             IPTE[i].PPN = PPN;
             IPTE[i].LRU = cyc;
@@ -589,35 +646,13 @@ unsigned int iPTE(unsigned int VPN)
                 index = i;
             }
         }
-        errVPN = IPTE[index].VPN;
-        errPPN = IPTE[index].PPN;
+        // errVPN = IPTE[index].VPN;
+        // errPPN = IPTE[index].PPN;
         IPTE[index].VPN = VPN;
         IPTE[index].PPN = PPN;
         IPTE[index].LRU = cyc;
         IPTE[index].valid  = true;
 
-        // Turn into invalid(PTE)
-        for(int i = 0; i < IPTE_entries; i++)
-            if( IPTE[i].PPN == PPN && IPTE[i].valid==true && IPTE[i].VPN != VPN) // Check Page Fault
-                IPTE[i].valid = false;
-
-        // Turn into invalid(TLB)
-        for(int i = 0; i < ITLB_entries; i++)
-            if( ITLB[i].PPN == PPN && ITLB[i].valid==true && ITLB[i].tag != VPN)
-                ITLB[i].valid = false;
-
-        // Turn into invalid(Cache)
-        for(int i = 0; i < IPage_size; i++)
-        {
-            unsigned int PA;
-            unsigned int cacheTag, cacheIndex;
-            PA = (errPPN<<IPage_offset) + i;
-            cacheIndex = (PA>>ICache_offset)%ICache_index;
-            cacheTag   = (PA>>ICache_offset)/ICache_index;
-            for(int j = 0; j < Iasscoiate; j++)
-                if( ICache[cacheIndex].set[j].valid == true &&ICache[cacheIndex].set[j].tag == cacheTag )
-                    ICache[cacheIndex].set[j].valid = false;
-        }
     }
 
     IPTE_miss++;
@@ -629,6 +664,7 @@ void iCache(unsigned int PA)
     // cout << "PA : " << setw(8) << setfill('0') << hex << PA << endl;
     unsigned int cacheTag, cacheIndex;
     // cout << "Cycle : " << dec << setw(2) << cyc << endl;
+    // Tag - Index - Offset
     cacheIndex = (PA>>ICache_offset)%ICache_index;
     // cout << "cacheIndex : " << dec << setw(2) << cacheIndex << endl;
     cacheTag   = (PA>>ICache_offset)/ICache_index;
@@ -642,6 +678,15 @@ void iCache(unsigned int PA)
             // cout << "Hit Cycle : " << setw(2) << dec << cyc << endl;
             ICache[cacheIndex].set[i].MRU = true;
             ICache_hit++;
+            // Check MRU
+            unsigned int temp = 0;
+            for(int j = 0; j < Iasscoiate; j++)
+                if(ICache[cacheIndex].set[j].MRU == true)
+                    temp++;
+            if(temp == Iasscoiate)
+                for(int j = 0; j < Iasscoiate; j++)
+                    ICache[cacheIndex].set[j].MRU = false;
+            ICache[cacheIndex].set[i].MRU = true;
             return;
         }
     }
@@ -674,7 +719,7 @@ void iCache(unsigned int PA)
     // Valid Bit --- Whole true in one set
     if(!isValid)
     {
-        if(Iasscoiate==1)
+        if(Iasscoiate == 1)
         {
             ICache[cacheIndex].set[0].MRU = true;
             ICache[cacheIndex].set[0].valid = true;
@@ -707,8 +752,6 @@ void iCache(unsigned int PA)
 
     ICache_miss++;
     return;
-
-
 }
 
 void iReport()

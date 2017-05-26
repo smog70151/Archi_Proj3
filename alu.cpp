@@ -367,7 +367,7 @@ void I_lw()
     //$t = 4 bytes from Memory[$s + C(signed)]
     int addr;
     addr = read_data1 + simmediate;
-    isWrite = false;
+    // isWrite = false;
     memoryCheckD((unsigned int)addr);
     if(0<=addr&&addr<=1020)
         reg[rt].cur = (data_mem[addr  ] << 24)
@@ -385,7 +385,7 @@ void I_lh()
     //$t = 2 bytes from Memory[$s + C(signed)], signed
     int addr;
     addr = read_data1 + simmediate;
-    isWrite = false;
+    // isWrite = false;
     memoryCheckD((unsigned int)addr);
     if(0<=addr&&addr<=1022)
     {
@@ -404,7 +404,7 @@ void I_lhu()
     //$t = 2 bytes from Memory[$s + C(signed)], unsigned
     int addr;
     addr = read_data1 + simmediate;
-    isWrite = false;
+    // isWrite = false;
     memoryCheckD((unsigned int)addr);
     if(0<=addr&&addr<=1022)
         reg[rt].cur = (data_mem[addr  ] << 8)
@@ -419,7 +419,7 @@ void I_lb()
     //$t = Memory[$s + C(signed)], signed
     int addr;
     addr = read_data1 + simmediate;
-    isWrite = false;
+    // isWrite = false;
     memoryCheckD((unsigned int)addr);
     if(0<=addr&&addr<=1023)
     {
@@ -437,7 +437,7 @@ void I_lbu()
     //$t = Memory[$s + C(signed)], unsigned
     int addr;
     addr = read_data1 + simmediate;
-    isWrite = false;
+    // isWrite = false;
     memoryCheckD((unsigned int)addr);
     if(0<=addr&&addr<=1023)
         reg[rt].cur = data_mem[addr];
@@ -451,7 +451,7 @@ void I_sw()
     //4 bytes from Memory[$s + C(signed)] = $t
     int addr;
     addr = read_data1 + simmediate;
-    isWrite = true;
+    // isWrite = true;
     memoryCheckD((unsigned int)addr);
     if(0<=addr&&addr<=1020)
     {
@@ -469,7 +469,7 @@ void I_sh()
     //2 bytes from Memory[$s + C(signed)] = $t & 0x0000FFFF
     int addr;
     addr = read_data1 + simmediate;
-    isWrite = false;
+    // isWrite = true;
     memoryCheckD((unsigned int)addr);
     if(0<=addr&&addr<=1022)
     {
@@ -588,7 +588,7 @@ void memoryCheckD(unsigned int VA)
         dCache(PA);
         // cout << "(DTLB)Hit Cycle : " << setw(2) << dec << cyc << endl;
         // if(isWrite)
-            // PPN = dPTE(VPN);
+        // PPN = dPTE(VPN);
     }
     else
     {
@@ -600,10 +600,11 @@ void memoryCheckD(unsigned int VA)
         dCache(PA);
     }
 }
+
 unsigned int dTLB_Hit(unsigned int VPN) // Return PPN
 {
     unsigned int tag;
-    tag = VPN;
+    tag = VPN; // TLB Fully associate => tag = VPN
     // Hit condition
     for(int i = 0; i < DTLB_entries; i++)
     {
@@ -619,6 +620,7 @@ unsigned int dTLB_Hit(unsigned int VPN) // Return PPN
     // Miss condition
     return -1;
 }
+
 void dTLB_Miss(unsigned int VPN, unsigned int PPN) // Write form TLB
 {
     // Valid bit --- false
@@ -659,6 +661,7 @@ void dTLB_Miss(unsigned int VPN, unsigned int PPN) // Write form TLB
 
 unsigned int dPTE(unsigned int VPN)  // Return PPN for TLB
 {
+    bool isPageFault = false;
     // Hit condition
     for(int i = 0; i < DPTE_entries; i++)
     {
@@ -667,6 +670,7 @@ unsigned int dPTE(unsigned int VPN)  // Return PPN for TLB
             DPTE_hit++;
             // cout << "(DPTE)Hit Cycle : " << setw(2) << dec << cyc << endl;
             DPTE[i].LRU = cyc;
+            DMemory[DPTE[i].PPN].LRU = cyc;
             // Write word
             // if(isWrite) DPTE[i].valid = false;
             return DPTE[i].PPN;
@@ -705,21 +709,50 @@ unsigned int dPTE(unsigned int VPN)  // Return PPN for TLB
                 index = i;
             }
         }
+        isPageFault = true;
+        DMemory[index].valid = true;
+        DMemory[index].LRU = cyc;
     }
 
 
     unsigned int PPN = index;
+    if(isPageFault)
+    {
+        // Turn into invalid(PTE)
+        for(int i = 0; i < DPTE_entries; i++)
+            if( DPTE[i].PPN == PPN && DPTE[i].valid==true ) // Check Page Fault
+                DPTE[i].valid = false;
+
+        // Turn into invalid(TLB)
+        for(int i = 0; i < DTLB_entries; i++)
+            if( DTLB[i].PPN == PPN && DTLB[i].valid==true )
+                DTLB[i].valid = false;
+
+        // Turn into invalid(Cache)
+        for(int i = 0; i < DPage_size; i++)
+        {
+            unsigned int PA;
+            unsigned int cacheTag, cacheIndex;
+            PA = (PPN<<DPage_offset) + i;
+            cacheIndex = (PA>>DCache_offset)%DCache_index;
+            cacheTag   = (PA>>DCache_offset)/DCache_index;
+            for(int j = 0; j < Dasscoiate; j++)
+                if( DCache[cacheIndex].set[j].tag == cacheTag )
+                    DCache[cacheIndex].set[j].valid = false;
+        }
+    }
+
     isValid = false;
 
     // Valid Bit --- false
-    unsigned int errVPN, errPPN;
+    // unsigned int errVPN, errPPN;
     for(int i = 0 ; i < DPTE_entries; i++)
     {
         // Find and Break the loop
         if( DPTE[i].valid == false )
         {
-            errVPN = DPTE[i].VPN;
-            errPPN = DPTE[i].PPN;
+            // errVPN = DPTE[i].VPN;
+            // errPPN = DPTE[i].PPN;
             DPTE[i].VPN = VPN;
             DPTE[i].PPN = PPN;
             DPTE[i].LRU = cyc;
@@ -744,8 +777,8 @@ unsigned int dPTE(unsigned int VPN)  // Return PPN for TLB
                 index = i;
             }
         }
-        errVPN = DPTE[index].VPN;
-        errPPN = DPTE[index].PPN;
+        // errVPN = DPTE[index].VPN;
+        // errPPN = DPTE[index].PPN;
         DPTE[index].VPN = VPN;
         DPTE[index].PPN = PPN;
         DPTE[index].LRU = cyc;
@@ -753,28 +786,7 @@ unsigned int dPTE(unsigned int VPN)  // Return PPN for TLB
         // Write word
         // if(isWrite) DTLB[index].valid = false;
 
-        // Turn into invalid(PTE)
-        for(int i = 0; i < DPTE_entries; i++)
-            if( DPTE[i].PPN == PPN && DPTE[i].valid==true && DPTE[i].VPN != VPN) // Check Page Fault
-                DPTE[i].valid = false;
 
-        // Turn into invalid(TLB)
-        for(int i = 0; i < DTLB_entries; i++)
-            if( DTLB[i].PPN == PPN && DTLB[i].valid==true && DTLB[i].tag != VPN)
-                DTLB[i].valid = false;
-
-        // Turn into invalid(Cache)
-        for(int i = 0; i < DPage_size; i++)
-        {
-            unsigned int PA;
-            unsigned int cacheTag, cacheIndex;
-            PA = (errPPN<<DPage_offset) + i;
-            cacheIndex = (PA>>DCache_offset)%DCache_index;
-            cacheTag   = (PA>>DCache_offset)/DCache_index;
-            for(int j = 0; j < Dasscoiate; j++)
-                if( DCache[cacheIndex].set[j].valid == true && DCache[cacheIndex].set[j].tag == cacheTag )
-                    DCache[cacheIndex].set[j].valid = false;
-        }
     }
 
     DPTE_miss++;
@@ -799,6 +811,14 @@ void dCache(unsigned int PA)
             // cout << "(DCache)Hit Cycle : " << setw(2) << dec << cyc << endl;
             DCache[cacheIndex].set[i].MRU = true;
             DCache_hit++;
+            unsigned int temp = 0;
+            for(int j = 0; j < Dasscoiate; j++)
+                if(DCache[cacheIndex].set[j].MRU == true)
+                    temp++;
+            if(temp == Dasscoiate)
+                for(int j = 0; j < Dasscoiate; j++)
+                    DCache[cacheIndex].set[j].MRU = false;
+            DCache[cacheIndex].set[i].MRU = true;
             // Write word
             // if(isWrite) DCache[cacheIndex].set[i].valid = false;
             return;
@@ -858,7 +878,7 @@ void dCache(unsigned int PA)
                     for(int j = 0; j < Dasscoiate; j++)
                         if(DCache[cacheIndex].set[j].MRU == true)
                             temp++;
-                    if(temp == Iasscoiate)
+                    if(temp == Dasscoiate)
                         for(int j = 0; j < Dasscoiate; j++)
                             DCache[cacheIndex].set[j].MRU = false;
                     DCache[cacheIndex].set[i].MRU = true;
