@@ -1,0 +1,1311 @@
+(D)Cycle :  1
+PA : 00000004
+cacheIndex : 01
+cacheTag : 00000000
+
+(D)Cycle : 02
+PA : 0000001c
+cacheIndex : 07
+cacheTag : 00000000
+
+(D)Cycle : 03
+PA : 0000002c
+cacheIndex : 03
+cacheTag : 00000001
+
+(D)Cycle : 04
+PA : 0000003c
+cacheIndex : 07
+cacheTag : 00000001
+
+(D)Cycle : 05
+PA : 00000018
+cacheIndex : 06
+cacheTag : 00000000
+
+(D)Cycle : 06
+PA : 00000004
+cacheIndex : 01
+cacheTag : 00000000
+(D)Hit Cycle : 06
+
+(D)Cycle : 07
+PA : 00000040
+cacheIndex : 00
+cacheTag : 00000002
+
+(D)Cycle : 08
+PA : 0000005c
+cacheIndex : 07
+cacheTag : 00000002
+
+(D)Cycle : 09
+PA : 0000006c
+cacheIndex : 03
+cacheTag : 00000003
+
+(D)Cycle : 10
+PA : 0000007c
+cacheIndex : 07
+cacheTag : 00000003
+
+(D)Cycle : 11
+PA : 00000018
+cacheIndex : 06
+cacheTag : 00000000
+(D)Hit Cycle : 11
+
+(D)Cycle : 12
+PA : 00000018
+cacheIndex : 06
+cacheTag : 00000000
+(D)Hit Cycle : 12
+
+(D)Cycle : 13
+PA : 00000084
+cacheIndex : 01
+cacheTag : 00000004
+
+(D)Cycle : 14
+PA : 00000090
+cacheIndex : 04
+cacheTag : 00000004
+
+(D)Cycle : 15
+PA : 000000a4
+cacheIndex : 01
+cacheTag : 00000005
+
+(D)Cycle : 16
+PA : 000000b8
+cacheIndex : 06
+cacheTag : 00000005
+
+(D)Cycle : 17
+PA : 0000001c
+cacheIndex : 07
+cacheTag : 00000000
+
+(D)Cycle : 18
+PA : 000000cc
+cacheIndex : 03
+cacheTag : 00000006
+
+(D)Cycle : 19
+PA : 000000dc
+cacheIndex : 07
+cacheTag : 00000006
+
+(D)Cycle : 20
+PA : 000000b8
+cacheIndex : 06
+cacheTag : 00000005
+(D)Hit Cycle : 20
+
+(D)Cycle : 21
+PA : 000000ac
+cacheIndex : 03
+cacheTag : 00000005
+
+(D)Cycle : 22
+PA : 000000ec
+cacheIndex : 03
+cacheTag : 00000007
+
+(D)Cycle : 23
+PA : 000000f8
+cacheIndex : 06
+cacheTag : 00000007
+
+(D)Cycle : 24
+PA : 0000007c
+cacheIndex : 07
+cacheTag : 00000003
+
+(D)Cycle : 25
+PA : 00000004
+cacheIndex : 01
+cacheTag : 00000000
+
+(D)Cycle : 26
+PA : 00000018
+cacheIndex : 06
+cacheTag : 00000000
+
+(D)Cycle : 27
+PA : 000000b4
+cacheIndex : 05
+cacheTag : 00000005
+
+(D)Cycle : 28
+PA : 00000098
+cacheIndex : 06
+cacheTag : 00000004
+
+(D)Cycle : 29
+PA : 0000004c
+cacheIndex : 03
+cacheTag : 00000002
+
+(D)Cycle : 30
+PA : 000000cc
+cacheIndex : 03
+cacheTag : 00000006
+
+(D)Cycle : 31
+PA : 00000028
+cacheIndex : 02
+cacheTag : 00000001
+
+(D)Cycle : 32
+PA : 00000038
+cacheIndex : 06
+cacheTag : 00000001
+
+(D)Cycle : 33
+PA : 00000040
+cacheIndex : 00
+cacheTag : 00000002
+
+(D)Cycle : 34
+PA : 00000050
+cacheIndex : 04
+cacheTag : 00000002
+
+(D)Cycle : 35
+PA : 00000064
+cacheIndex : 01
+cacheTag : 00000003
+
+(D)Cycle : 36
+PA : 00000040
+cacheIndex : 00
+cacheTag : 00000002
+(D)Hit Cycle : 36
+
+(D)Cycle : 37
+PA : 00000074
+cacheIndex : 05
+cacheTag : 00000003
+
+(D)Cycle : 38
+PA : 000000cc
+cacheIndex : 03
+cacheTag : 00000006
+(D)Hit Cycle : 38
+
+(D)Cycle : 39
+PA : 00000040
+cacheIndex : 00
+cacheTag : 00000002
+(D)Hit Cycle : 39
+
+(D)Cycle : 40
+PA : 00000080
+cacheIndex : 00
+cacheTag : 00000004
+
+(D)Cycle : 41
+PA : 00000094
+cacheIndex : 05
+cacheTag : 00000004
+
+(D)Cycle : 42
+PA : 000000ac
+cacheIndex : 03
+cacheTag : 00000005
+
+(D)Cycle : 43
+PA : 000000a0
+cacheIndex : 00
+cacheTag : 00000005
+
+(D)Cycle : 44
+PA : 000000b4
+cacheIndex : 05
+cacheTag : 00000005
+
+(D)Cycle : 45
+PA : 000000c0
+cacheIndex : 00
+cacheTag : 00000006
+
+(D)Cycle : 46
+PA : 000000d4
+cacheIndex : 05
+cacheTag : 00000006
+
+(D)Cycle : 47
+PA : 000000e8
+cacheIndex : 02
+cacheTag : 00000007
+
+(D)Cycle : 48
+PA : 0000008c
+cacheIndex : 03
+cacheTag : 00000004
+
+(D)Cycle : 49
+PA : 000000f8
+cacheIndex : 06
+cacheTag : 00000007
+
+(D)Cycle : 50
+PA : 0000008c
+cacheIndex : 03
+cacheTag : 00000004
+(D)Hit Cycle : 50
+
+(D)Cycle : 51
+PA : 000000b8
+cacheIndex : 06
+cacheTag : 00000005
+
+(D)Cycle : 52
+PA : 00000020
+cacheIndex : 00
+cacheTag : 00000001
+
+(D)Cycle : 53
+PA : 00000004
+cacheIndex : 01
+cacheTag : 00000000
+
+(D)Cycle : 54
+PA : 00000080
+cacheIndex : 00
+cacheTag : 00000004
+
+(D)Cycle : 55
+PA : 00000020
+cacheIndex : 00
+cacheTag : 00000001
+(D)Hit Cycle : 55
+
+(D)Cycle : 56
+PA : 00000018
+cacheIndex : 06
+cacheTag : 00000000
+
+(D)Cycle : 57
+PA : 000000e0
+cacheIndex : 00
+cacheTag : 00000007
+
+(D)Cycle : 58
+PA : 000000c4
+cacheIndex : 01
+cacheTag : 00000006
+
+(D)Cycle : 59
+PA : 00000030
+cacheIndex : 04
+cacheTag : 00000001
+
+(D)Cycle : 60
+PA : 00000020
+cacheIndex : 00
+cacheTag : 00000001
+(D)Hit Cycle : 60
+
+(D)Cycle : 61
+PA : 00000028
+cacheIndex : 02
+cacheTag : 00000001
+
+(D)Cycle : 62
+PA : 00000030
+cacheIndex : 04
+cacheTag : 00000001
+
+(D)Cycle : 63
+PA : 00000040
+cacheIndex : 00
+cacheTag : 00000002
+
+(D)Cycle : 64
+PA : 0000005c
+cacheIndex : 07
+cacheTag : 00000002
+
+(D)Cycle : 65
+PA : 00000068
+cacheIndex : 02
+cacheTag : 00000003
+
+(D)Cycle : 66
+PA : 00000090
+cacheIndex : 04
+cacheTag : 00000004
+
+(D)Cycle : 67
+PA : 00000078
+cacheIndex : 06
+cacheTag : 00000003
+
+(D)Cycle : 68
+PA : 000000a8
+cacheIndex : 02
+cacheTag : 00000005
+
+(D)Cycle : 69
+PA : 00000080
+cacheIndex : 00
+cacheTag : 00000004
+
+(D)Cycle : 70
+PA : 00000090
+cacheIndex : 04
+cacheTag : 00000004
+
+(D)Cycle : 71
+PA : 000000a0
+cacheIndex : 00
+cacheTag : 00000005
+
+(D)Cycle : 72
+PA : 0000006c
+cacheIndex : 03
+cacheTag : 00000003
+
+(D)Cycle : 73
+PA : 00000080
+cacheIndex : 00
+cacheTag : 00000004
+(D)Hit Cycle : 73
+
+(D)Cycle : 74
+PA : 000000bc
+cacheIndex : 07
+cacheTag : 00000005
+
+(D)Cycle : 75
+PA : 000000e8
+cacheIndex : 02
+cacheTag : 00000007
+
+(D)Cycle : 76
+PA : 00000060
+cacheIndex : 00
+cacheTag : 00000003
+
+(D)Cycle : 77
+PA : 000000c4
+cacheIndex : 01
+cacheTag : 00000006
+
+(D)Cycle : 78
+PA : 000000dc
+cacheIndex : 07
+cacheTag : 00000006
+
+(D)Cycle : 79
+PA : 000000e8
+cacheIndex : 02
+cacheTag : 00000007
+(D)Hit Cycle : 79
+
+(D)Cycle : 80
+PA : 000000e4
+cacheIndex : 01
+cacheTag : 00000007
+
+(D)Cycle : 81
+PA : 000000f4
+cacheIndex : 05
+cacheTag : 00000007
+
+(D)Cycle : 82
+PA : 00000024
+cacheIndex : 01
+cacheTag : 00000001
+
+(D)Cycle : 83
+PA : 00000070
+cacheIndex : 04
+cacheTag : 00000003
+
+(D)Cycle : 84
+PA : 00000000
+cacheIndex : 00
+cacheTag : 00000000
+
+(D)Cycle : 85
+PA : 0000005c
+cacheIndex : 07
+cacheTag : 00000002
+
+(D)Cycle : 86
+PA : 00000064
+cacheIndex : 01
+cacheTag : 00000003
+
+(D)Cycle : 87
+PA : 0000001c
+cacheIndex : 07
+cacheTag : 00000000
+
+(D)Cycle : 88
+PA : 0000002c
+cacheIndex : 03
+cacheTag : 00000001
+
+(D)Cycle : 89
+PA : 00000034
+cacheIndex : 05
+cacheTag : 00000001
+
+(D)Cycle : 90
+PA : 00000084
+cacheIndex : 01
+cacheTag : 00000004
+
+(D)Cycle : 91
+PA : 00000040
+cacheIndex : 00
+cacheTag : 00000002
+
+(D)Cycle : 92
+PA : 00000054
+cacheIndex : 05
+cacheTag : 00000002
+
+(D)Cycle : 93
+PA : 000000dc
+cacheIndex : 07
+cacheTag : 00000006
+
+(D)Cycle : 94
+PA : 0000006c
+cacheIndex : 03
+cacheTag : 00000003
+
+(D)Cycle : 95
+PA : 00000070
+cacheIndex : 04
+cacheTag : 00000003
+
+(D)Cycle : 96
+PA : 00000080
+cacheIndex : 00
+cacheTag : 00000004
+
+(D)Cycle : 97
+PA : 00000090
+cacheIndex : 04
+cacheTag : 00000004
+
+(D)Cycle : 98
+PA : 000000a8
+cacheIndex : 02
+cacheTag : 00000005
+
+(D)Cycle : 99
+PA : 000000b0
+cacheIndex : 04
+cacheTag : 00000005
+
+(D)Cycle : 100
+PA : 00000094
+cacheIndex : 05
+cacheTag : 00000004
+
+(D)Cycle : 101
+PA : 0000001c
+cacheIndex : 07
+cacheTag : 00000000
+(D)Hit Cycle : 101
+
+(D)Cycle : 102
+PA : 00000088
+cacheIndex : 02
+cacheTag : 00000004
+
+(D)Cycle : 103
+PA : 000000c0
+cacheIndex : 00
+cacheTag : 00000006
+
+(D)Cycle : 104
+PA : 00000020
+cacheIndex : 00
+cacheTag : 00000001
+
+(D)Cycle : 105
+PA : 000000c0
+cacheIndex : 00
+cacheTag : 00000006
+(D)Hit Cycle : 105
+
+(D)Cycle : 106
+PA : 00000054
+cacheIndex : 05
+cacheTag : 00000002
+(D)Hit Cycle : 106
+
+(D)Cycle : 107
+PA : 000000dc
+cacheIndex : 07
+cacheTag : 00000006
+
+(D)Cycle : 108
+PA : 00000094
+cacheIndex : 05
+cacheTag : 00000004
+(D)Hit Cycle : 108
+
+(D)Cycle : 109
+PA : 000000e4
+cacheIndex : 01
+cacheTag : 00000007
+
+(D)Cycle : 110
+PA : 000000f0
+cacheIndex : 04
+cacheTag : 00000007
+
+(D)Cycle : 111
+PA : 00000004
+cacheIndex : 01
+cacheTag : 00000000
+
+(D)Cycle : 112
+PA : 0000001c
+cacheIndex : 07
+cacheTag : 00000000
+
+(D)Cycle : 113
+PA : 0000006c
+cacheIndex : 03
+cacheTag : 00000003
+(D)Hit Cycle : 113
+
+(D)Cycle : 114
+PA : 000000f8
+cacheIndex : 06
+cacheTag : 00000007
+
+(D)Cycle : 115
+PA : 00000028
+cacheIndex : 02
+cacheTag : 00000001
+
+(D)Cycle : 116
+PA : 00000034
+cacheIndex : 05
+cacheTag : 00000001
+
+(D)Cycle : 117
+PA : 00000044
+cacheIndex : 01
+cacheTag : 00000002
+
+(D)Cycle : 118
+PA : 00000004
+cacheIndex : 01
+cacheTag : 00000000
+(D)Hit Cycle : 118
+
+(D)Cycle : 119
+PA : 0000001c
+cacheIndex : 07
+cacheTag : 00000000
+(D)Hit Cycle : 119
+
+(D)Cycle : 120
+PA : 0000005c
+cacheIndex : 07
+cacheTag : 00000002
+
+(D)Cycle : 121
+PA : 0000005c
+cacheIndex : 07
+cacheTag : 00000002
+
+(D)Cycle : 122
+PA : 00000018
+cacheIndex : 06
+cacheTag : 00000000
+
+(D)Cycle : 123
+PA : 00000068
+cacheIndex : 02
+cacheTag : 00000003
+
+(D)Cycle : 124
+PA : 00000074
+cacheIndex : 05
+cacheTag : 00000003
+
+(D)Cycle : 125
+PA : 000000ac
+cacheIndex : 03
+cacheTag : 00000005
+
+(D)Cycle : 126
+PA : 000000cc
+cacheIndex : 03
+cacheTag : 00000006
+
+(D)Cycle : 127
+PA : 0000008c
+cacheIndex : 03
+cacheTag : 00000004
+
+(D)Cycle : 128
+PA : 00000014
+cacheIndex : 05
+cacheTag : 00000000
+
+(D)Cycle : 129
+PA : 00000090
+cacheIndex : 04
+cacheTag : 00000004
+
+(D)Cycle : 130
+PA : 00000070
+cacheIndex : 04
+cacheTag : 00000003
+
+(D)Cycle : 131
+PA : 000000a0
+cacheIndex : 00
+cacheTag : 00000005
+
+(D)Cycle : 132
+PA : 000000b4
+cacheIndex : 05
+cacheTag : 00000005
+
+(D)Cycle : 133
+PA : 000000c8
+cacheIndex : 02
+cacheTag : 00000006
+
+(D)Cycle : 134
+PA : 000000cc
+cacheIndex : 03
+cacheTag : 00000006
+
+(D)Cycle : 135
+PA : 000000d4
+cacheIndex : 05
+cacheTag : 00000006
+
+(D)Cycle : 136
+PA : 00000030
+cacheIndex : 04
+cacheTag : 00000001
+
+(D)Cycle : 137
+PA : 000000e8
+cacheIndex : 02
+cacheTag : 00000007
+
+(D)Cycle : 138
+PA : 000000ec
+cacheIndex : 03
+cacheTag : 00000007
+
+(D)Cycle : 139
+PA : 000000f0
+cacheIndex : 04
+cacheTag : 00000007
+
+(D)Cycle : 140
+PA : 00000008
+cacheIndex : 02
+cacheTag : 00000000
+
+(D)Cycle : 141
+PA : 00000018
+cacheIndex : 06
+cacheTag : 00000000
+
+(D)Cycle : 142
+PA : 00000088
+cacheIndex : 02
+cacheTag : 00000004
+
+(D)Cycle : 143
+PA : 000000ec
+cacheIndex : 03
+cacheTag : 00000007
+(D)Hit Cycle : 143
+
+(D)Cycle : 144
+PA : 00000018
+cacheIndex : 06
+cacheTag : 00000000
+(D)Hit Cycle : 144
+
+(D)Cycle : 145
+PA : 00000020
+cacheIndex : 00
+cacheTag : 00000001
+
+(D)Cycle : 146
+PA : 00000074
+cacheIndex : 05
+cacheTag : 00000003
+
+(D)Cycle : 147
+PA : 0000003c
+cacheIndex : 07
+cacheTag : 00000001
+
+(D)Cycle : 148
+PA : 0000006c
+cacheIndex : 03
+cacheTag : 00000003
+
+(D)Cycle : 149
+PA : 0000002c
+cacheIndex : 03
+cacheTag : 00000001
+
+(D)Cycle : 150
+PA : 00000014
+cacheIndex : 05
+cacheTag : 00000000
+
+(D)Cycle : 151
+PA : 0000004c
+cacheIndex : 03
+cacheTag : 00000002
+
+(D)Cycle : 152
+PA : 00000090
+cacheIndex : 04
+cacheTag : 00000004
+
+(D)Cycle : 153
+PA : 00000058
+cacheIndex : 06
+cacheTag : 00000002
+
+(D)Cycle : 154
+PA : 00000060
+cacheIndex : 00
+cacheTag : 00000003
+
+(D)Cycle : 155
+PA : 00000078
+cacheIndex : 06
+cacheTag : 00000003
+
+(D)Cycle : 156
+PA : 00000084
+cacheIndex : 01
+cacheTag : 00000004
+
+(D)Cycle : 157
+PA : 00000090
+cacheIndex : 04
+cacheTag : 00000004
+
+(D)Cycle : 158
+PA : 000000a8
+cacheIndex : 02
+cacheTag : 00000005
+
+(D)Cycle : 159
+PA : 00000014
+cacheIndex : 05
+cacheTag : 00000000
+(D)Hit Cycle : 159
+
+(D)Cycle : 160
+PA : 000000bc
+cacheIndex : 07
+cacheTag : 00000005
+
+(D)Cycle : 161
+PA : 000000c0
+cacheIndex : 00
+cacheTag : 00000006
+
+(D)Cycle : 162
+PA : 00000070
+cacheIndex : 04
+cacheTag : 00000003
+
+(D)Cycle : 163
+PA : 00000060
+cacheIndex : 00
+cacheTag : 00000003
+(D)Hit Cycle : 163
+
+(D)Cycle : 164
+PA : 0000002c
+cacheIndex : 03
+cacheTag : 00000001
+(D)Hit Cycle : 164
+
+(D)Cycle : 165
+PA : 000000b4
+cacheIndex : 05
+cacheTag : 00000005
+
+(D)Cycle : 166
+PA : 000000f0
+cacheIndex : 04
+cacheTag : 00000007
+
+(D)Cycle : 167
+PA : 000000d8
+cacheIndex : 06
+cacheTag : 00000006
+
+(D)Cycle : 168
+PA : 000000e8
+cacheIndex : 02
+cacheTag : 00000007
+
+(D)Cycle : 169
+PA : 000000b0
+cacheIndex : 04
+cacheTag : 00000005
+
+(D)Cycle : 170
+PA : 000000f8
+cacheIndex : 06
+cacheTag : 00000007
+
+(D)Cycle : 171
+PA : 00000030
+cacheIndex : 04
+cacheTag : 00000001
+
+(D)Cycle : 172
+PA : 000000bc
+cacheIndex : 07
+cacheTag : 00000005
+(D)Hit Cycle : 172
+
+(D)Cycle : 173
+PA : 00000004
+cacheIndex : 01
+cacheTag : 00000000
+
+(D)Cycle : 174
+PA : 0000001c
+cacheIndex : 07
+cacheTag : 00000000
+
+(D)Cycle : 175
+PA : 000000a8
+cacheIndex : 02
+cacheTag : 00000005
+(D)Hit Cycle : 175
+
+(D)Cycle : 176
+PA : 00000024
+cacheIndex : 01
+cacheTag : 00000001
+
+(D)Cycle : 177
+PA : 00000030
+cacheIndex : 04
+cacheTag : 00000001
+
+(D)Cycle : 178
+PA : 00000050
+cacheIndex : 04
+cacheTag : 00000002
+
+(D)Cycle : 179
+PA : 00000040
+cacheIndex : 00
+cacheTag : 00000002
+
+(D)Cycle : 180
+PA : 00000058
+cacheIndex : 06
+cacheTag : 00000002
+
+(D)Cycle : 181
+PA : 000000e8
+cacheIndex : 02
+cacheTag : 00000007
+(D)Hit Cycle : 181
+
+(D)Cycle : 182
+PA : 000000d4
+cacheIndex : 05
+cacheTag : 00000006
+
+(D)Cycle : 183
+PA : 000000c0
+cacheIndex : 00
+cacheTag : 00000006
+
+(D)Cycle : 184
+PA : 00000054
+cacheIndex : 05
+cacheTag : 00000002
+
+(D)Cycle : 185
+PA : 00000068
+cacheIndex : 02
+cacheTag : 00000003
+
+(D)Cycle : 186
+PA : 00000078
+cacheIndex : 06
+cacheTag : 00000003
+
+(D)Cycle : 187
+PA : 0000008c
+cacheIndex : 03
+cacheTag : 00000004
+
+(D)Cycle : 188
+PA : 000000c0
+cacheIndex : 00
+cacheTag : 00000006
+(D)Hit Cycle : 188
+
+(D)Cycle : 189
+PA : 0000009c
+cacheIndex : 07
+cacheTag : 00000004
+
+(D)Cycle : 190
+PA : 00000098
+cacheIndex : 06
+cacheTag : 00000004
+
+(D)Cycle : 191
+PA : 000000a4
+cacheIndex : 01
+cacheTag : 00000005
+
+(D)Cycle : 192
+PA : 000000b4
+cacheIndex : 05
+cacheTag : 00000005
+
+(D)Cycle : 193
+PA : 000000c8
+cacheIndex : 02
+cacheTag : 00000006
+
+(D)Cycle : 194
+PA : 000000dc
+cacheIndex : 07
+cacheTag : 00000006
+
+(D)Cycle : 195
+PA : 00000030
+cacheIndex : 04
+cacheTag : 00000001
+(D)Hit Cycle : 195
+
+(D)Cycle : 196
+PA : 000000e8
+cacheIndex : 02
+cacheTag : 00000007
+
+(D)Cycle : 197
+PA : 00000024
+cacheIndex : 01
+cacheTag : 00000001
+(D)Hit Cycle : 197
+
+(D)Cycle : 198
+PA : 000000f4
+cacheIndex : 05
+cacheTag : 00000007
+
+(D)Cycle : 199
+PA : 000000e0
+cacheIndex : 00
+cacheTag : 00000007
+
+(D)Cycle : 200
+PA : 00000018
+cacheIndex : 06
+cacheTag : 00000000
+
+(D)Cycle : 201
+PA : 000000a0
+cacheIndex : 00
+cacheTag : 00000005
+
+(D)Cycle : 202
+PA : 00000068
+cacheIndex : 02
+cacheTag : 00000003
+
+(D)Cycle : 203
+PA : 00000024
+cacheIndex : 01
+cacheTag : 00000001
+(D)Hit Cycle : 203
+
+(D)Cycle : 204
+PA : 000000f8
+cacheIndex : 06
+cacheTag : 00000007
+
+(D)Cycle : 205
+PA : 0000000c
+cacheIndex : 03
+cacheTag : 00000000
+
+(D)Cycle : 206
+PA : 00000064
+cacheIndex : 01
+cacheTag : 00000003
+
+(D)Cycle : 207
+PA : 000000d4
+cacheIndex : 05
+cacheTag : 00000006
+
+(D)Cycle : 208
+PA : 000000d0
+cacheIndex : 04
+cacheTag : 00000006
+
+(D)Cycle : 209
+PA : 0000005c
+cacheIndex : 07
+cacheTag : 00000002
+
+(D)Cycle : 210
+PA : 000000a4
+cacheIndex : 01
+cacheTag : 00000005
+
+(D)Cycle : 211
+PA : 00000074
+cacheIndex : 05
+cacheTag : 00000003
+
+(D)Cycle : 212
+PA : 0000001c
+cacheIndex : 07
+cacheTag : 00000000
+
+(D)Cycle : 213
+PA : 00000020
+cacheIndex : 00
+cacheTag : 00000001
+
+(D)Cycle : 214
+PA : 000000e4
+cacheIndex : 01
+cacheTag : 00000007
+
+(D)Cycle : 215
+PA : 000000d4
+cacheIndex : 05
+cacheTag : 00000006
+(D)Hit Cycle : 215
+
+(D)Cycle : 216
+PA : 000000ec
+cacheIndex : 03
+cacheTag : 00000007
+
+(D)Cycle : 217
+PA : 0000003c
+cacheIndex : 07
+cacheTag : 00000001
+
+(D)Cycle : 218
+PA : 00000048
+cacheIndex : 02
+cacheTag : 00000002
+
+(D)Cycle : 219
+PA : 00000058
+cacheIndex : 06
+cacheTag : 00000002
+
+(D)Cycle : 220
+PA : 00000098
+cacheIndex : 06
+cacheTag : 00000004
+
+(D)Cycle : 221
+PA : 00000074
+cacheIndex : 05
+cacheTag : 00000003
+(D)Hit Cycle : 221
+
+(D)Cycle : 222
+PA : 00000060
+cacheIndex : 00
+cacheTag : 00000003
+
+(D)Cycle : 223
+PA : 00000010
+cacheIndex : 04
+cacheTag : 00000000
+
+(D)Cycle : 224
+PA : 0000006c
+cacheIndex : 03
+cacheTag : 00000003
+
+(D)Cycle : 225
+PA : 00000080
+cacheIndex : 00
+cacheTag : 00000004
+
+(D)Cycle : 226
+PA : 00000000
+cacheIndex : 00
+cacheTag : 00000000
+
+(D)Cycle : 227
+PA : 00000070
+cacheIndex : 04
+cacheTag : 00000003
+
+(D)Cycle : 228
+PA : 00000078
+cacheIndex : 06
+cacheTag : 00000003
+
+(D)Cycle : 229
+PA : 00000080
+cacheIndex : 00
+cacheTag : 00000004
+
+(D)Cycle : 230
+PA : 00000094
+cacheIndex : 05
+cacheTag : 00000004
+
+(D)Cycle : 231
+PA : 000000dc
+cacheIndex : 07
+cacheTag : 00000006
+
+(D)Cycle : 232
+PA : 000000a4
+cacheIndex : 01
+cacheTag : 00000005
+
+(D)Cycle : 233
+PA : 000000b4
+cacheIndex : 05
+cacheTag : 00000005
+
+(D)Cycle : 234
+PA : 000000cc
+cacheIndex : 03
+cacheTag : 00000006
+
+(D)Cycle : 235
+PA : 0000000c
+cacheIndex : 03
+cacheTag : 00000000
+
+(D)Cycle : 236
+PA : 000000a4
+cacheIndex : 01
+cacheTag : 00000005
+(D)Hit Cycle : 236
+
+(D)Cycle : 237
+PA : 000000dc
+cacheIndex : 07
+cacheTag : 00000006
+
+(D)Cycle : 238
+PA : 000000c0
+cacheIndex : 00
+cacheTag : 00000006
+
+(D)Cycle : 239
+PA : 00000098
+cacheIndex : 06
+cacheTag : 00000004
+
+(D)Cycle : 240
+PA : 000000fc
+cacheIndex : 07
+cacheTag : 00000007
+
+(D)Cycle : 241
+PA : 000000e4
+cacheIndex : 01
+cacheTag : 00000007
+
+(D)Cycle : 242
+PA : 00000094
+cacheIndex : 05
+cacheTag : 00000004
+(D)Hit Cycle : 242
+
+(D)Cycle : 243
+PA : 00000054
+cacheIndex : 05
+cacheTag : 00000002
+
+(D)Cycle : 244
+PA : 000000f4
+cacheIndex : 05
+cacheTag : 00000007
+
+(D)Cycle : 245
+PA : 00000008
+cacheIndex : 02
+cacheTag : 00000000
+
+(D)Cycle : 246
+PA : 00000010
+cacheIndex : 04
+cacheTag : 00000000
+
+(D)Cycle : 247
+PA : 0000002c
+cacheIndex : 03
+cacheTag : 00000001
+
+(D)Cycle : 248
+PA : 000000e0
+cacheIndex : 00
+cacheTag : 00000007
+
+(D)Cycle : 249
+PA : 00000034
+cacheIndex : 05
+cacheTag : 00000001
+
+(D)Cycle : 250
+PA : 00000048
+cacheIndex : 02
+cacheTag : 00000002
+
+(D)Cycle : 251
+PA : 00000058
+cacheIndex : 06
+cacheTag : 00000002
+
+(D)Cycle : 252
+PA : 00000050
+cacheIndex : 04
+cacheTag : 00000002
+
+(D)Cycle : 253
+PA : 00000044
+cacheIndex : 01
+cacheTag : 00000002
+
+(D)Cycle : 254
+PA : 00000000
+cacheIndex : 00
+cacheTag : 00000000
+
+(D)Cycle : 255
+PA : 00000034
+cacheIndex : 05
+cacheTag : 00000001
+(D)Hit Cycle : 255
+

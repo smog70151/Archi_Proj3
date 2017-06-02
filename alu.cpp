@@ -11,7 +11,7 @@
 
 using namespace std;
 
-void memoryCheckD(unsigned int VA);
+void dProcessor(unsigned int VA);
 unsigned int dTLB_Hit(unsigned int VPN); // Return PPN
 void dTLB_Miss(unsigned int VPN, unsigned int PPN); // Write form TLB
 unsigned int dPTE(unsigned int VPN);  // Return PPN for TLB
@@ -368,7 +368,7 @@ void I_lw()
     int addr;
     addr = read_data1 + simmediate;
     // isWrite = false;
-    memoryCheckD((unsigned int)addr);
+    dProcessor((unsigned int)addr);
     if(0<=addr&&addr<=1020)
         reg[rt].cur = (data_mem[addr  ] << 24)
                     + (data_mem[addr+1] << 16)
@@ -386,7 +386,7 @@ void I_lh()
     int addr;
     addr = read_data1 + simmediate;
     // isWrite = false;
-    memoryCheckD((unsigned int)addr);
+    dProcessor((unsigned int)addr);
     if(0<=addr&&addr<=1022)
     {
         reg[rt].cur = (data_mem[addr  ] << 8)
@@ -405,7 +405,7 @@ void I_lhu()
     int addr;
     addr = read_data1 + simmediate;
     // isWrite = false;
-    memoryCheckD((unsigned int)addr);
+    dProcessor((unsigned int)addr);
     if(0<=addr&&addr<=1022)
         reg[rt].cur = (data_mem[addr  ] << 8)
                     + (data_mem[addr+1]     );
@@ -420,7 +420,7 @@ void I_lb()
     int addr;
     addr = read_data1 + simmediate;
     // isWrite = false;
-    memoryCheckD((unsigned int)addr);
+    dProcessor((unsigned int)addr);
     if(0<=addr&&addr<=1023)
     {
         reg[rt].cur = data_mem[addr];
@@ -438,7 +438,7 @@ void I_lbu()
     int addr;
     addr = read_data1 + simmediate;
     // isWrite = false;
-    memoryCheckD((unsigned int)addr);
+    dProcessor((unsigned int)addr);
     if(0<=addr&&addr<=1023)
         reg[rt].cur = data_mem[addr];
     Error_R0(); //detect Write Register[0]
@@ -452,7 +452,7 @@ void I_sw()
     int addr;
     addr = read_data1 + simmediate;
     // isWrite = true;
-    memoryCheckD((unsigned int)addr);
+    dProcessor((unsigned int)addr);
     if(0<=addr&&addr<=1020)
     {
         data_mem[addr  ] = (reg[rt].cur >> 24) & 0x000000ff;
@@ -470,7 +470,7 @@ void I_sh()
     int addr;
     addr = read_data1 + simmediate;
     // isWrite = true;
-    memoryCheckD((unsigned int)addr);
+    dProcessor((unsigned int)addr);
     if(0<=addr&&addr<=1022)
     {
         data_mem[addr  ] = (reg[rt].cur >>  8) & 0x000000ff;
@@ -486,7 +486,7 @@ void I_sb()
     int addr;
     addr = read_data1 + simmediate;
     isWrite = true;
-    memoryCheckD((unsigned int)addr);
+    dProcessor((unsigned int)addr);
     if(0<=addr&&addr<=1023)
         data_mem[addr  ] = (reg[rt].cur      ) & 0x000000ff;
     Error_OVF(); //detect Adder OVF
@@ -571,7 +571,7 @@ void halt()
 }
 /* S-Type Instructions */
 
-void memoryCheckD(unsigned int VA)
+void dProcessor(unsigned int VA)
 {
     int VPN, PPN, PA;
     // VPN == Tag (Due to Fully associate)
@@ -581,9 +581,8 @@ void memoryCheckD(unsigned int VA)
     PPN = dTLB_Hit(VPN);
     // cout <<"Cycle : " << dec << cyc << "--- TLB : " << dec << PPN << endl;
     // TLB Hit
-    if(PPN != -1)
+    if(PPN>=0)
     {
-        DTLB_hit++;
         PA = (PPN<<DPage_offset) + (VA%DPage_size);
         dCache(PA);
         // cout << "(DTLB)Hit Cycle : " << setw(2) << dec << cyc << endl;
@@ -592,7 +591,6 @@ void memoryCheckD(unsigned int VA)
     }
     else
     {
-        DTLB_miss++;
         PPN = dPTE(VPN);
         // cout << "PTE : "<< dec << PPN << endl;
         dTLB_Miss(VPN, PPN);
@@ -610,6 +608,7 @@ unsigned int dTLB_Hit(unsigned int VPN) // Return PPN
     {
         if( DTLB[i].tag == tag && DTLB[i].valid == true )
         {
+            DTLB_hit++;
             DTLB[i].LRU = cyc;
             // Write Word
             // if ( isWrite ) DTLB[i].valid = false;
@@ -618,6 +617,7 @@ unsigned int dTLB_Hit(unsigned int VPN) // Return PPN
     }
 
     // Miss condition
+    DTLB_miss++;
     return -1;
 }
 
@@ -737,8 +737,13 @@ unsigned int dPTE(unsigned int VPN)  // Return PPN for TLB
             cacheIndex = (PA>>DCache_offset)%DCache_index;
             cacheTag   = (PA>>DCache_offset)/DCache_index;
             for(int j = 0; j < Dasscoiate; j++)
+            {
                 if( DCache[cacheIndex].set[j].tag == cacheTag )
+                {
                     DCache[cacheIndex].set[j].valid = false;
+                    DCache[cacheIndex].set[j].MRU = false;
+                }
+            }
         }
     }
 
@@ -795,20 +800,20 @@ unsigned int dPTE(unsigned int VPN)  // Return PPN for TLB
 
 void dCache(unsigned int PA)
 {
-    // cout << "PA : " << setw(8) << setfill('0') << hex << PA << endl;
+    trace << "(D)Cycle : " << dec << setw(2) << cyc << endl;
+    trace << "PA : " << setw(8) << setfill('0') << hex << PA << endl;
     unsigned int cacheTag, cacheIndex;
-    // cout << "Cycle : " << dec << setw(2) << cyc << endl;
     cacheIndex = (PA>>DCache_offset)%DCache_index;
-    // cout << "cacheIndex : " << dec << setw(2) << cacheIndex << endl;
+    trace << "cacheIndex : " << dec << setw(2) << cacheIndex << endl;
     cacheTag   = (PA>>DCache_offset)/DCache_index;
-    // cout << "cacheTag : " << hex << setw(8) << setfill('0') << cacheTag << endl;
+    trace << "cacheTag : " << hex << setw(8) << setfill('0') << cacheTag << endl;
 
     // Hit condition
     for(int i = 0; i < Dasscoiate; i++)
     {
         if(DCache[cacheIndex].set[i].tag == cacheTag && DCache[cacheIndex].set[i].valid == true)
         {
-            // cout << "(DCache)Hit Cycle : " << setw(2) << dec << cyc << endl;
+            trace << "(D)Hit Cycle : " << setw(2) << dec << cyc << endl << endl;
             DCache[cacheIndex].set[i].MRU = true;
             DCache_hit++;
             unsigned int temp = 0;
@@ -824,6 +829,7 @@ void dCache(unsigned int PA)
             return;
         }
     }
+    trace << endl;
 
     // Miss condition
     // Valid Bit false condition

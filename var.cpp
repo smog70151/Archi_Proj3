@@ -11,6 +11,7 @@ using namespace std;
 fstream snapshot;    // snapshot.rpt
 fstream error_dump;  // error_dump.rpt
 fstream report;      // report.rpt
+fstream trace;
 
 //input file
 fstream iimage;      // read iimage

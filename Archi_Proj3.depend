@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1495818989 source:d:\users\user\desktop\nthu\105_2nd_semester\archi\project 3\archi_proj3\alu.cpp
+1496055723 source:d:\users\user\desktop\nthu\105_2nd_semester\archi\project 3\archi_proj3\alu.cpp
 	<iostream>
 	<iomanip>
 	<fstream>
@@ -9,7 +9,7 @@
 	"var.h"
 	"error_detect.h"
 
-1495607029 d:\users\user\desktop\nthu\105_2nd_semester\archi\project 3\archi_proj3\var.h
+1496056958 d:\users\user\desktop\nthu\105_2nd_semester\archi\project 3\archi_proj3\var.h
 	<iostream>
 	<fstream>
 	<string>
@@ -42,7 +42,7 @@
 	<cstdlib>
 	"var.h"
 
-1495808848 source:d:\users\user\desktop\nthu\105_2nd_semester\archi\project 3\archi_proj3\main.cpp
+1496057005 source:d:\users\user\desktop\nthu\105_2nd_semester\archi\project 3\archi_proj3\main.cpp
 	<iostream>
 	<iomanip>
 	<fstream>
@@ -92,7 +92,7 @@
 	<cstdlib>
 	"var.h"
 
-1495607305 source:d:\users\user\desktop\nthu\105_2nd_semester\archi\project 3\archi_proj3\var.cpp
+1496056965 source:d:\users\user\desktop\nthu\105_2nd_semester\archi\project 3\archi_proj3\var.cpp
 	<iostream>
 	<fstream>
 	<string>

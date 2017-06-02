@@ -37,7 +37,7 @@ void iTLB_Miss(unsigned int VPN, unsigned int PPN); // Write form TLB
 unsigned int iPTE(unsigned int VPN);  // Return PPN for TLB
 void iCache(unsigned int PA);
 void iReport();
-void memoryCheck(unsigned int VA);
+void iProcessor(unsigned int VA);
 
 int main(int argc, char **argv)
 {
@@ -47,16 +47,16 @@ int main(int argc, char **argv)
     //Init condition
 
     // Config : Default
-    IMemory_size = 64;
-    DMemory_size = 32;
-    IPage_size = 8;
-    DPage_size = 16;
-    ICache_size = 16;
-    IBlock_size = 4;
-    Iasscoiate = 4;
-    DCache_size = 16;
-    DBlock_size = 4;
-    Dasscoiate = 1;
+    // IMemory_size = 64;
+    // DMemory_size = 32;
+    // IPage_size = 8;
+    // DPage_size = 16;
+    // ICache_size = 16;
+    // IBlock_size = 4;
+    // Iasscoiate = 4;
+    // DCache_size = 16;
+    // DBlock_size = 4;
+    // Dasscoiate = 1;
     // Config : 2
     // IMemory_size = 32;
     // DMemory_size = 256;
@@ -79,6 +79,17 @@ int main(int argc, char **argv)
     // DCache_size = 32;
     // DBlock_size = 4;
     // Dasscoiate = 2;
+    // Config : 3 //256 256 16 16 64 4 4 64 4 2
+    IMemory_size = 256;
+    DMemory_size = 256;
+    IPage_size = 16;
+    DPage_size = 16;
+    ICache_size = 64;
+    IBlock_size = 4;
+    Iasscoiate = 4;
+    DCache_size = 64;
+    DBlock_size = 4;
+    Dasscoiate = 2;
 
     if(argc >= 2) IMemory_size = atoi(argv[1]);
     if(argc >= 3) DMemory_size = atoi(argv[2]);
@@ -105,7 +116,7 @@ int main(int argc, char **argv)
         if(cyc==500001 || PC.cur > 1023) break; //cyc > 500,000
         cyc++; //cycle ++;
         addr = PC.cur/4 ; //load instruction memory
-        memoryCheck(PC.cur);
+        iProcessor(PC.cur);
         PC_ALU(); //PC = PC+4 -> next instruction
         Decode(inst_mem[addr]); //Decode current instruction
         Read_Reg(); //Read the red data and signed immediate( simmediate )
@@ -115,8 +126,9 @@ int main(int argc, char **argv)
     iReport();
     //close *.rpt
     snapshot.close();
-    error_dump.close();
+    // error_dump.close();
     report.close();
+    trace.close();
     return 0;
 }
 
@@ -140,8 +152,9 @@ void init()
     flag_OVW = true; // true -> correct
 
     snapshot.open("snapshot.rpt", ios::out);
-    error_dump.open("error_dump.rpt", ios::out);
+    // error_dump.open("error_dump.rpt", ios::out);
     report.open("report.rpt", ios::out);
+    trace.open("trace.rpt", ios::out);
 }
 
 void read_iimage()
@@ -450,30 +463,33 @@ void initdMemory()
     DCache_hit = DCache_miss = 0;
 }
 
-void memoryCheck(unsigned int VA)
+void iProcessor(unsigned int VA)
 {
     int VPN, PPN, PA;
     // VPN == Tag (Due to Fully associate)
     VPN = VA>>IPage_offset;
     // cout << "Cycle  :  " << dec << setw(2) << cyc << endl;;
     // cout << "VA : "<< setw(8) << setfill('0') << hex << VA << endl;
-    PPN = iTLB_Hit(VPN);
     // cout <<"Cycle : " << dec << cyc << "--- TLB : " << dec << PPN << endl;
-    // TLB Hit
-    if(PPN != -1)
+    // TLB Hit Condition
+    // Condition :
+    // TLB PTE Cache
+    // TLB Hit ? Cache : PTE
+    // PTE Hit ? TLB : Disk
+    // Cache Hit ? Cache : Memory
+    PPN = iTLB_Hit(VPN); // Check TLB Hit
+    if(PPN>=0) // 0 <= PPN <= Memory_entries
     {
-        ITLB_hit++;
-        PA = (PPN<<IPage_offset) + (VA%IPage_size);
+        PA = (PPN<<IPage_offset) + (VA%IPage_size); // Reassemble the PA
         iCache(PA);
     }
     else // Miss Condition
     {
-        ITLB_miss++;
-        PPN = iPTE(VPN);
+        PPN = iPTE(VPN); // Get new PPN
         // cout << "PTE : "<< dec << PPN << endl << endl;
-        iTLB_Miss(VPN, PPN);
-        PA = (PPN<<IPage_offset) + (VA%IPage_size);
-        iCache(PA);
+        iTLB_Miss(VPN, PPN); // Write back to TLB
+        PA = (PPN<<IPage_offset) + (VA%IPage_size); // Reassemble the PA
+        iCache(PA); // Search Cache
     }
 }
 
@@ -486,6 +502,7 @@ unsigned int iTLB_Hit(unsigned int VPN)
     {
         if( ITLB[i].tag == tag && ITLB[i].valid == true )
         {
+            ITLB_hit++;
             ITLB[i].LRU = cyc;
             // cout << "Hit Cycle(ITLB) : " << setw(2) << dec << cyc << endl;
             return ITLB[i].PPN;
@@ -493,6 +510,7 @@ unsigned int iTLB_Hit(unsigned int VPN)
     }
 
     // Miss condition
+    ITLB_miss++;
     return -1;
 }
 
@@ -608,8 +626,13 @@ unsigned int iPTE(unsigned int VPN)
             cacheIndex = (PA>>ICache_offset)%ICache_index;
             cacheTag   = (PA>>ICache_offset)/ICache_index;
             for(int j = 0; j < Iasscoiate; j++)
+            {
                 if( ICache[cacheIndex].set[j].tag == cacheTag )
+                {
                     ICache[cacheIndex].set[j].valid = false;
+                    ICache[cacheIndex].set[j].MRU = false;
+                }
+            }
         }
     }
 

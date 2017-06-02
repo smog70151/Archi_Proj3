@@ -12,6 +12,7 @@ using namespace std;
 extern fstream snapshot;    // snapshot.rpt
 extern fstream error_dump;  // error_dump.rpt
 extern fstream report;
+extern fstream trace;
 //input file
 extern fstream iimage;      // read iimage
 extern fstream dimage;      // read dimage
