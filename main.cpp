@@ -47,16 +47,16 @@ int main(int argc, char **argv)
     //Init condition
 
     // Config : Default
-    // IMemory_size = 64;
-    // DMemory_size = 32;
-    // IPage_size = 8;
-    // DPage_size = 16;
-    // ICache_size = 16;
-    // IBlock_size = 4;
-    // Iasscoiate = 4;
-    // DCache_size = 16;
-    // DBlock_size = 4;
-    // Dasscoiate = 1;
+    IMemory_size = 64;
+    DMemory_size = 32;
+    IPage_size = 8;
+    DPage_size = 16;
+    ICache_size = 16;
+    IBlock_size = 4;
+    Iasscoiate = 4;
+    DCache_size = 16;
+    DBlock_size = 4;
+    Dasscoiate = 1;
     // Config : 2
     // IMemory_size = 32;
     // DMemory_size = 256;
@@ -80,16 +80,16 @@ int main(int argc, char **argv)
     // DBlock_size = 4;
     // Dasscoiate = 2;
     // Config : 3 //256 256 16 16 64 4 4 64 4 2
-    IMemory_size = 256;
-    DMemory_size = 256;
-    IPage_size = 16;
-    DPage_size = 16;
-    ICache_size = 64;
-    IBlock_size = 4;
-    Iasscoiate = 4;
-    DCache_size = 64;
-    DBlock_size = 4;
-    Dasscoiate = 2;
+    // IMemory_size = 256;
+    // DMemory_size = 256;
+    // IPage_size = 16;
+    // DPage_size = 16;
+    // ICache_size = 64;
+    // IBlock_size = 4;
+    // Iasscoiate = 4;
+    // DCache_size = 64;
+    // DBlock_size = 4;
+    // Dasscoiate = 2;
 
     if(argc >= 2) IMemory_size = atoi(argv[1]);
     if(argc >= 3) DMemory_size = atoi(argv[2]);
@@ -104,7 +104,7 @@ int main(int argc, char **argv)
     //Init memory
     initiMemory();
     initdMemory();
-    //read *.bin1
+    //read *.bin
     read_iimage();
     read_dimage();
 
@@ -116,7 +116,7 @@ int main(int argc, char **argv)
         if(cyc==500001 || PC.cur > 1023) break; //cyc > 500,000
         cyc++; //cycle ++;
         addr = PC.cur/4 ; //load instruction memory
-        iProcessor(PC.cur);
+        iProcessor(PC.cur); //Simulator CMP
         PC_ALU(); //PC = PC+4 -> next instruction
         Decode(inst_mem[addr]); //Decode current instruction
         Read_Reg(); //Read the red data and signed immediate( simmediate )
@@ -478,7 +478,10 @@ void iProcessor(unsigned int VA)
     // PTE Hit ? TLB : Disk
     // Cache Hit ? Cache : Memory
     PPN = iTLB_Hit(VPN); // Check TLB Hit
-    if(PPN>=0) // 0 <= PPN <= Memory_entries
+    bool isTLBHit = false;
+    if(PPN>=0&&PPN<IMemory_entries) // 0 <= PPN <= Memory_entries
+        isTLBHit = true;
+    if(isTLBHit)
     {
         PA = (PPN<<IPage_offset) + (VA%IPage_size); // Reassemble the PA
         iCache(PA);

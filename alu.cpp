@@ -581,7 +581,10 @@ void dProcessor(unsigned int VA)
     PPN = dTLB_Hit(VPN);
     // cout <<"Cycle : " << dec << cyc << "--- TLB : " << dec << PPN << endl;
     // TLB Hit
-    if(PPN>=0)
+    bool isTLBHit = false;
+    if(PPN>=0&&PPN<DMemory_entries)
+        isTLBHit = true;
+    if(isTLBHit)
     {
         PA = (PPN<<DPage_offset) + (VA%DPage_size);
         dCache(PA);
@@ -800,20 +803,20 @@ unsigned int dPTE(unsigned int VPN)  // Return PPN for TLB
 
 void dCache(unsigned int PA)
 {
-    trace << "(D)Cycle : " << dec << setw(2) << cyc << endl;
-    trace << "PA : " << setw(8) << setfill('0') << hex << PA << endl;
+    // trace << "(D)Cycle : " << dec << setw(2) << cyc << endl;
+    // trace << "PA : " << setw(8) << setfill('0') << hex << PA << endl;
     unsigned int cacheTag, cacheIndex;
     cacheIndex = (PA>>DCache_offset)%DCache_index;
-    trace << "cacheIndex : " << dec << setw(2) << cacheIndex << endl;
+    // trace << "cacheIndex : " << dec << setw(2) << cacheIndex << endl;
     cacheTag   = (PA>>DCache_offset)/DCache_index;
-    trace << "cacheTag : " << hex << setw(8) << setfill('0') << cacheTag << endl;
+    // trace << "cacheTag : " << hex << setw(8) << setfill('0') << cacheTag << endl;
 
     // Hit condition
     for(int i = 0; i < Dasscoiate; i++)
     {
         if(DCache[cacheIndex].set[i].tag == cacheTag && DCache[cacheIndex].set[i].valid == true)
         {
-            trace << "(D)Hit Cycle : " << setw(2) << dec << cyc << endl << endl;
+            // trace << "(D)Hit Cycle : " << setw(2) << dec << cyc << endl << endl;
             DCache[cacheIndex].set[i].MRU = true;
             DCache_hit++;
             unsigned int temp = 0;
@@ -829,7 +832,7 @@ void dCache(unsigned int PA)
             return;
         }
     }
-    trace << endl;
+    // trace << endl;
 
     // Miss condition
     // Valid Bit false condition
